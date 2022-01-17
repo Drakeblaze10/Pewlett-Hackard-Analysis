@@ -19,5 +19,5 @@ Requested by Pewlett Hackard, I was tasked with determining the number of retiri
 
 -Using the total number of employees per department (as shown below Table 1) and comparing it to the list of current employees retiring soon (Table 2). The departments will have to have to soon-to-be-retirees mentor several employees as either a group lead or an equivalent position as the silver tsunami takes only a small portion from the departments in relation to the total
 
-![Table1]()
-![Table2]()
+![Table1](https://github.com/Drakeblaze10/Pewlett-Hackard-Analysis/blob/main/Data/Resources/total_dept.PNG)
+![Table2](https://github.com/Drakeblaze10/Pewlett-Hackard-Analysis/blob/main/Data/Resources/Retirement_dept.PNG)

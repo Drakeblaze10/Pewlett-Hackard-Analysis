@@ -71,3 +71,27 @@ INNER JOIN titles as ti
 WHERE (de.to_date = '9999-01-01')
 AND (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
 ORDER BY e.emp_no;
+
+-- Total no. of employees by department
+SELECT DISTINCT ON (e.emp_no) e.emp_no,
+	e.first_name,
+	e.last_name,
+	de.dept_no,
+	d.dept_name
+INTO total_emp_dept
+FROM employees as e
+INNER JOIN dept_emp as de ON (e.emp_no = de.emp_no)
+INNER JOIN departments as d ON (de.dept_no = d.dept_no);
+
+SELECT COUNT (ted.emp_no), ted.dept_name
+INTO total_emp_dept_count
+FROM total_emp_dept as ted
+GROUP BY ted.dept_name ORDER BY ted.count DESC;
+
+-- Retiring employee per department
+SELECT COUNT (ec.emp_no), d.dept_name
+-- INTO total_emp_dept_count
+FROM emp_count as ec
+INNER JOIN departments as d
+ON ec.dept_no = d.dept_no
+GROUP BY ec.dept_name ORDER BY ec.count DESC;
