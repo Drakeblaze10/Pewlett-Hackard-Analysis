@@ -4,6 +4,19 @@ SELECT e.emp_no,
 	e.last_name
 FROM employees as e;
 
+-- Total no. of employees by title
+SELECT DISTINCT ON (e.emp_no) e.emp_no,
+	e.first_name,
+	e.last_name,
+	ti.title
+INTO total_emp
+FROM employees as e
+INNER JOIN titles as ti ON (e.emp_no = ti.emp_no);
+
+SELECT COUNT (te.emp_no), te.title
+FROM total_emp as te
+GROUP BY te.title ORDER BY te.count DESC;
+
 -- Retrieve from titles table
 SELECT ti.title,
 	ti.from_date,
@@ -25,7 +38,7 @@ ORDER BY e.emp_no
 ;
 	
 
--- Use Dictinct with Orderby to remove duplicate rows
+-- Create Unique titles
 SELECT DISTINCT ON (rt.emp_no) rt.emp_no,
 	rt.first_name,
 	rt.last_name,
@@ -37,7 +50,7 @@ ORDER BY rt.emp_no, rt.to_date DESC;
 
 -- Soon to retire employee count
 SELECT COUNT(ut.emp_no), ut.title
-INTO retiring_titles
+--INTO retiring_titles
 FROM unique_titles as ut
 GROUP BY ut.title ORDER BY ut.count DESC;
 
@@ -57,5 +70,4 @@ INNER JOIN titles as ti
 	ON (e.emp_no = ti.emp_no)
 WHERE (de.to_date = '9999-01-01')
 AND (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
-ORDER BY e.emp_no
-;
+ORDER BY e.emp_no;
